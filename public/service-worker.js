@@ -47,7 +47,7 @@ self.addEventListener("fetch", function(event) {
 if (event.request.url.includes("/api/")) {
   event.respondWith(
     caches.open(dataCacheName).then(cache => {
-      return fetch(event.request)
+      fetch(event.request)
         .then(response => {
           // If the response was good, clone it and store it in the cache.
           if (response.status === 200) {
