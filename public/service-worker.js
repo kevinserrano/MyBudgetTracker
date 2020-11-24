@@ -21,7 +21,7 @@ event.waitUntil(
   })
 );
 
-
+self.skipWaiting();
 });
 
 // activate
@@ -47,7 +47,7 @@ self.addEventListener("fetch", function(event) {
 if (event.request.url.includes("/api/")) {
   event.respondWith(
     caches.open(dataCacheName).then(cache => {
-      fetch(event.request)
+      return fetch(event.request)
         .then(response => {
           // If the response was good, clone it and store it in the cache.
           if (response.status === 200) {
